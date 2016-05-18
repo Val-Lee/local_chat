@@ -1,0 +1,8 @@
+D:\Val-Lee\2kurs\4 sem\kursa4\local_chat(v2.0)\local_chat(v2.0)\obj\Debug\local_chat(v2.0).csprojResolveAssemblyReference.cache
+D:\Val-Lee\2kurs\4 sem\kursa4\local_chat(v2.0)\local_chat(v2.0)\obj\Debug\local_chat_v2.__.MainForm.resources
+D:\Val-Lee\2kurs\4 sem\kursa4\local_chat(v2.0)\local_chat(v2.0)\obj\Debug\local_chat(v2.0).csproj.GenerateResource.Cache
+D:\Val-Lee\2kurs\4 sem\kursa4\local_chat(v2.0)\local_chat(v2.0)\bin\Debug\local_chat(v2.0).exe.config
+D:\Val-Lee\2kurs\4 sem\kursa4\local_chat(v2.0)\local_chat(v2.0)\bin\Debug\local_chat(v2.0).exe
+D:\Val-Lee\2kurs\4 sem\kursa4\local_chat(v2.0)\local_chat(v2.0)\bin\Debug\local_chat(v2.0).pdb
+D:\Val-Lee\2kurs\4 sem\kursa4\local_chat(v2.0)\local_chat(v2.0)\obj\Debug\local_chat(v2.0).exe
+D:\Val-Lee\2kurs\4 sem\kursa4\local_chat(v2.0)\local_chat(v2.0)\obj\Debug\local_chat(v2.0).pdb
