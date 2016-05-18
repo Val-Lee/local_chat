@@ -124,6 +124,7 @@ namespace client
 				try
 				{
 					recv = ClToSr.Receive(data);
+
 				}
 				catch { break; }
 				stringData = Encoding.UTF8.GetString(data, 0, recv);
