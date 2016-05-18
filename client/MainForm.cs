@@ -84,12 +84,12 @@ namespace client
 
 				byte[] message = Encoding.UTF8.GetBytes(UserName);
 				ClToSr.BeginSend(message, 0, message.Length, 0, new AsyncCallback(SendDataSr), ClToSr);
-
+                
 				receiverЫ = new Thread(new ThreadStart(ReceiveDataToSr));
 				receiverЫ.Name = "RforCL";
 				receiverЫ.IsBackground = true;
 				receiverЫ.Start();
-                
+                UpdateUserList();
 
 			}
 			catch (SocketException)
@@ -130,10 +130,9 @@ namespace client
 				stringData = Encoding.UTF8.GetString(data, 0, recv);
 				AddHist(stringData);
 				MoveHist();
-                UpdateUserList();
+                //UpdateUserList();
 			}
 			ClToSr.Close();
-           // UpdateUserList();
 			AddHist("\nСоединение c сервером было разорвано.");
 			CONNECTED = false;
 			//StatusCHange();
