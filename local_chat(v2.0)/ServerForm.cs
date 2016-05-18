@@ -21,7 +21,7 @@ namespace local_chat_v2.__
 	/// <summary>
 	/// Description of MainForm.
 	/// </summary>
-	public partial class MainForm : Form
+	public partial class ServerForm : Form
 	{
 		//VARS
 		public string  servName, IPsr, UserName;
@@ -37,7 +37,7 @@ namespace local_chat_v2.__
 		delegate void MovTextCallback();
 		delegate void UpdUserList();
 		
-		public MainForm()
+		public ServerForm()
 		{
 			//
 			// The InitializeComponent() call is required for Windows Forms designer support.
@@ -77,7 +77,7 @@ namespace local_chat_v2.__
 					ClToSr = null;
 				}
 				catch { }
-				AddHist("Отключены успешно");
+				AddHist("\nОтключены успешно");
 			}
 			else
 			{
@@ -383,7 +383,8 @@ namespace local_chat_v2.__
 							}
 							now++;
 						}
-
+                        if (now == MxUsr)
+                        {
                             now = 0;
 
                             while (MxUsr > now)
@@ -399,7 +400,8 @@ namespace local_chat_v2.__
                                     break;
                                 }
                                 now++;
-                            
+
+                            }
                         }
 				}
 			} catch {

@@ -8,7 +8,7 @@
  */
 namespace local_chat_v2.__
 {
-	partial class MainForm
+	partial class ServerForm
 	{
 		/// <summary>
 		/// Designer variable used to keep track of non-visual components.

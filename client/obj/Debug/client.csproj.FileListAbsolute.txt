@@ -32,8 +32,8 @@ D:\study(v2)\2kurs2sem\kursa4\local_chat(v2.0)\client\bin\Debug\client.exe
 D:\study(v2)\2kurs2sem\kursa4\local_chat(v2.0)\client\bin\Debug\client.pdb
 D:\study(v2)\2kurs2sem\kursa4\local_chat(v2.0)\client\obj\Debug\client.csprojResolveAssemblyReference.cache
 D:\study(v2)\2kurs2sem\kursa4\local_chat(v2.0)\client\obj\Debug\client.connect.resources
-D:\study(v2)\2kurs2sem\kursa4\local_chat(v2.0)\client\obj\Debug\client.MainForm.resources
 D:\study(v2)\2kurs2sem\kursa4\local_chat(v2.0)\client\obj\Debug\client.NewIP.resources
 D:\study(v2)\2kurs2sem\kursa4\local_chat(v2.0)\client\obj\Debug\client.csproj.GenerateResource.Cache
 D:\study(v2)\2kurs2sem\kursa4\local_chat(v2.0)\client\obj\Debug\client.exe
 D:\study(v2)\2kurs2sem\kursa4\local_chat(v2.0)\client\obj\Debug\client.pdb
+D:\study(v2)\2kurs2sem\kursa4\local_chat(v2.0)\client\obj\Debug\client.ClientForm.resources

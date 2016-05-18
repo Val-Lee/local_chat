@@ -17,8 +17,8 @@ namespace client
 	/// </summary>
 	public partial class NewIP : Form
 	{
-		private MainForm frm;
-		public NewIP(MainForm f)
+		private ClientForm frm;
+		public NewIP(ClientForm f)
 		{
 			frm = f;
 			//

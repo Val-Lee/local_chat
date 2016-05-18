@@ -17,8 +17,8 @@ namespace client
 	/// </summary>
 	public partial class connect : Form
 	{
-		private MainForm frm;
-		public connect(MainForm f)
+		private ClientForm frm;
+		public connect(ClientForm f)
 		{
 			frm = f;
 			//

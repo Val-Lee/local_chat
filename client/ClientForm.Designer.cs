@@ -8,7 +8,7 @@
  */
 namespace client
 {
-	partial class MainForm
+	partial class ClientForm
 	{
 		/// <summary>
 		/// Designer variable used to keep track of non-visual components.

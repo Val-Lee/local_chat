@@ -20,7 +20,7 @@ namespace client
 	/// <summary>
 	/// Description of MainForm.
 	/// </summary>
-	public partial class MainForm : Form
+	public partial class ClientForm : Form
 	{
 		public string adminName, servName, UserName;
 		public string IPsr = "192.168.1.2";
@@ -35,7 +35,7 @@ namespace client
 		delegate void MovTextCallback();
 		delegate void UpdUserList();
 		public Thread receiverЫ;
-		public MainForm()
+		public ClientForm()
 		{
 			//
 			// The InitializeComponent() call is required for Windows Forms designer support.
@@ -78,13 +78,10 @@ namespace client
 		{
 			try
 			{
-
 				ClToSr.EndConnect(iar);
 				AddHist("\nУспешно подключены к: " + ClToSr.RemoteEndPoint.ToString());
-
 				byte[] message = Encoding.UTF8.GetBytes(UserName);
 				ClToSr.BeginSend(message, 0, message.Length, 0, new AsyncCallback(SendDataSr), ClToSr);
-                
 				receiverЫ = new Thread(new ThreadStart(ReceiveDataToSr));
 				receiverЫ.Name = "RforCL";
 				receiverЫ.IsBackground = true;
@@ -125,13 +122,16 @@ namespace client
 				{
 					recv = ClToSr.Receive(data);
 
+
 				}
 				catch { break; }
+                
 				stringData = Encoding.UTF8.GetString(data, 0, recv);
 				AddHist(stringData);
 				MoveHist();
-                //UpdateUserList();
+                
 			}
+            UpdateUserList();
 			ClToSr.Close();
 			AddHist("\nСоединение c сервером было разорвано.");
 			CONNECTED = false;

@@ -26,7 +26,8 @@ F:\local_chat(v2.0)\local_chat(v2.0)\obj\Debug\server.csprojResolveAssemblyRefer
 D:\study(v2)\2kurs2sem\kursa4\local_chat(v2.0)\local_chat(v2.0)\bin\Debug\server.exe.config
 D:\study(v2)\2kurs2sem\kursa4\local_chat(v2.0)\local_chat(v2.0)\bin\Debug\server.exe
 D:\study(v2)\2kurs2sem\kursa4\local_chat(v2.0)\local_chat(v2.0)\bin\Debug\server.pdb
-D:\study(v2)\2kurs2sem\kursa4\local_chat(v2.0)\local_chat(v2.0)\obj\Debug\local_chat_v2.__.MainForm.resources
 D:\study(v2)\2kurs2sem\kursa4\local_chat(v2.0)\local_chat(v2.0)\obj\Debug\server.csproj.GenerateResource.Cache
 D:\study(v2)\2kurs2sem\kursa4\local_chat(v2.0)\local_chat(v2.0)\obj\Debug\server.exe
 D:\study(v2)\2kurs2sem\kursa4\local_chat(v2.0)\local_chat(v2.0)\obj\Debug\server.pdb
+D:\study(v2)\2kurs2sem\kursa4\local_chat(v2.0)\local_chat(v2.0)\obj\Debug\server.csprojResolveAssemblyReference.cache
+D:\study(v2)\2kurs2sem\kursa4\local_chat(v2.0)\local_chat(v2.0)\obj\Debug\local_chat_v2.__.ServerForm.resources
