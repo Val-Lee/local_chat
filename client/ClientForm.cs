@@ -120,18 +120,17 @@ namespace client
 			{
 				try
 				{
+                    
 					recv = ClToSr.Receive(data);
-
-
 				}
 				catch { break; }
                 
 				stringData = Encoding.UTF8.GetString(data, 0, recv);
 				AddHist(stringData);
 				MoveHist();
-                
+                //UpdateUserList();
 			}
-            UpdateUserList();
+            
 			ClToSr.Close();
 			AddHist("\nСоединение c сервером было разорвано.");
 			CONNECTED = false;
@@ -231,8 +230,9 @@ namespace client
 		void DisconnectClick(object sender, EventArgs e)
 		{
 			ClToSr.Close();
+            UpdateUserList();
 			CONNECTED = false;
-			AddHist("Отключены успешно");
+			AddHist("\nОтключены успешно");
 			
 		}
 		void UpdateUserList()

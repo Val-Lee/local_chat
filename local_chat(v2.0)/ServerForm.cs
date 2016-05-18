@@ -204,7 +204,7 @@ namespace local_chat_v2.__
 								client[NumCl].BeginSend(message, 0, message.Length, 0, new AsyncCallback(SendDataEnd), client[NumCl]);
 								client[NumCl].Close();
 								client[NumCl] = null;
-								//MakeServerStart();
+								MakeServerStart();
 								return;
 							}
 						}
