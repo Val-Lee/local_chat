@@ -21,10 +21,10 @@ namespace local_chat_v2.__
 	/// <summary>
 	/// Description of MainForm.
 	/// </summary>
-	public partial class ServerForm : Form
+	public partial class MainForm : Form
 	{
 		//VARS
-		public string  servName, IPsr, UserName;
+		public string adminName, servName, IPsr, UserName;
 		public Socket[] client;
 		Socket newsock;
 		IPEndPoint iep;
@@ -36,43 +36,34 @@ namespace local_chat_v2.__
 		delegate void SetTextCallback(string text);
 		delegate void MovTextCallback();
 		delegate void UpdUserList();
-        //public client.ClientForm qw;
-		//public ServerForm(client.ClientForm cf)
-        public ServerForm()
+		
+		public MainForm()
 		{
 			//
 			// The InitializeComponent() call is required for Windows Forms designer support.
 			//
-            
 			InitializeComponent();
-           // qw = cf;
 			StatusCHange();
 			
 			//
 			// TODO: Add constructor code after the InitializeComponent() call.
 			//
 		}
-        
-     
+
 		void HostServerClick(object sender, EventArgs e)
 		{
-            
-			try
-            {
-				MxUsr = 15;
-				client = new Socket[15];
-				userlist = new string[15];
+			try {
+				MxUsr = 200;
+				client = new Socket[200];
+				userlist = new string[200];
 				MakeServerStart();
 				AddHist("\n" + "Сервер запущен.");
-			} 
-            catch (Exception x) 
-            {
+			} catch (Exception x) {
 				MessageBox.Show(x.Message);
 			}
 		}
 		void StopServerClick(object sender, EventArgs e)
 		{
-            
 			CONNECTED = false;
 			if (ISCLIENT)
 			{
@@ -86,7 +77,7 @@ namespace local_chat_v2.__
 					ClToSr = null;
 				}
 				catch { }
-				AddHist("\nОтключены успешно");
+				AddHist("Отключены успешно");
 			}
 			else
 			{
@@ -130,7 +121,7 @@ namespace local_chat_v2.__
 			newsock.Bind(iep);
 			newsock.Listen(5);
 			newsock.BeginAccept(new AsyncCallback(AcceptConn), newsock);
-			//	UpdateUserList();
+		//	UpdateUserList();
 			
 		}
 		
@@ -159,28 +150,20 @@ namespace local_chat_v2.__
 			if (CONNECTED)
 			{
 				Socket oldserver = (Socket)iar.AsyncState;
-				while (client[NumCl] != null)
-				{
+				while (client[NumCl] != null) {
 					NumCl++;
-					if (NumCl > MxUsr - 1)
-					{
+					if (NumCl > MxUsr - 1) {
 						NumCl = -1;
 						break;
 					}
 				}
-				if (NumCl == -1)
-				{
+				if (NumCl == -1) {
 					oldserver.Close();
 					MakeServerStart();
-				}
-				else
-				{
-					try
-					{
+				} else {
+					try {
 						client[NumCl] = oldserver.EndAccept(iar);
-					}
-					catch
-					{
+					} catch {
 					}
 					oldserver.Close();
 
@@ -188,12 +171,9 @@ namespace local_chat_v2.__
 					byte[] data = new byte[1024];
 					int recv;
 
-					try
-					{
+					try {
 						recv = client[NumCl].Receive(data);
-					}
-					catch
-					{
+					} catch {
 						AddHist("\nОшибка соединения с клиентом");
 						client[NumCl] = null;
 						MakeServerStart();
@@ -203,17 +183,14 @@ namespace local_chat_v2.__
 					usrName = Encoding.UTF8.GetString(data, 0, recv);
 
 					int nwUsr = 0;
-					while (MxUsr > nwUsr)
-					{
-						if (userlist[nwUsr] != null)
-						{
-							if (userlist[nwUsr].Trim() == usrName.Trim())
-							{
+					while (MxUsr > nwUsr) {
+						if (userlist[nwUsr] != null) {
+							if (userlist[nwUsr].Trim() == usrName.Trim()) {
 								byte[] message = Encoding.UTF8.GetBytes("Пользователь с таким ником уже существует");
 								client[NumCl].BeginSend(message, 0, message.Length, 0, new AsyncCallback(SendDataEnd), client[NumCl]);
 								client[NumCl].Close();
 								client[NumCl] = null;
-								MakeServerStart();
+								//MakeServerStart();
 								return;
 							}
 						}
@@ -224,17 +201,14 @@ namespace local_chat_v2.__
 
 					AddHist("\nПодключён: " + client[NumCl].RemoteEndPoint.ToString() + " : " + userlist[NumCl]);
 					SendToAll("\nПодключён: " + userlist[NumCl], NumCl);
-					
+					UpdateUserList();
 					Thread receiver = new Thread(ReceiveData);
 					receiver.IsBackground = true;
 					receiver.Start(NumCl);
-					MakeServerStart();                   
-					UpdateUserList();
-                    //qw.UpdateUserList();
+
+					MakeServerStart();
 				}
-			} 
-			else
-			{
+			} else {
 				AddHist("\nСервер ушел спать");
 			}
 		}
@@ -289,43 +263,34 @@ namespace local_chat_v2.__
 					sendall.IsBackground = true;
 
 					Thread Privat = new Thread(delegate() {
-					                           	PrivatMessage(stData);
+					                           	PrivatMessage(stData, false);
 					                           });
 					Privat.IsBackground = true;
 
 					recv = client[Clnm].Receive(data);
 
-					if (Encoding.UTF8.GetString(data, 0, recv) == "*get_all_users_tocl*")
-					{
+					if (Encoding.UTF8.GetString(data, 0, recv) == "*get_all_users_tocl*") {
 						Thread getlist = new Thread(delegate() {
 						                            	GenUserList(Clnm);
 						                            });
 						getlist.IsBackground = true;
 						getlist.Start();
 						stringData = "*get_all_users_tocl*";
-				 	}
-					else
-					{
+					} else {
 						string ttt = Encoding.UTF8.GetString(data, 0, recv);
-						//if (ttt.Substring((userlist[Clnm].Length + 3)).Length >= 4)
-						//{
-							if (ttt.Contains("%пр%"))
-							{
+						if (ttt.Substring((userlist[Clnm].Length + 3)).Length >= 4) {
+							if (ttt.Substring((userlist[Clnm].Length + 3), 4) == "%пр%") {
 								stData = Encoding.UTF8.GetString(data, 0, recv);
 								Privat.Start();
 								stringData = "*get_all_users_tocl*";
-							}
-							else
-							{
+							} else {
 								stringData = Encoding.UTF8.GetString(data, 0, recv);
 								sendall.Start();
 							}
-						//}
-                        //else
-                        //{
-                        //    stringData = Encoding.UTF8.GetString(data, 0, recv);
-                        //    sendall.Start();
-                        //}
+						} else {
+							stringData = Encoding.UTF8.GetString(data, 0, recv);
+							sendall.Start();
+						}
 					}
 
 				}
@@ -347,9 +312,7 @@ namespace local_chat_v2.__
 			}
 			client[Clnm] = null;
 			userlist[Clnm] = null;
-            
-			UpdateUserList();
-           // qw.UpdateUserList();
+            UpdateUserList();
 		}
 		void SendToAll(string mess, int clSNDD)
 		{
@@ -368,54 +331,55 @@ namespace local_chat_v2.__
 			int sent = remote.EndSend(iar);
 		}
 		
-		void PrivatMessage(string text)
+		void PrivatMessage(string text, bool isadmin)
 		{
 			string[] txtC = text.Split('%');
 			int mxI = txtC.Length, now = 0;
-            string curTimeLong = DateTime.Now.ToLongTimeString();
+
 			string Tsend = "";
-			string User = "";//from
-			string UtS = "";//to
+			string User = "";
+			string UtS = "";
 			try {
 				UtS = txtC[2];
-                User = txtC[0].Substring(12).Split(':')[0];
-				Tsend = "\n" + curTimeLong + " Приват от \"" + User + "\": " + text.Substring(txtC[0].Length + txtC[1].Length + txtC[2].Length + 3);
+				User = txtC[0].Substring(1).Split(':')[0];
+				Tsend = "\nПриват от \"" + User + "\": " + text.Substring(txtC[0].Length + txtC[1].Length + txtC[2].Length + 3);
 
 				if (User != UtS) {
-					
+					if (UtS == adminName) {
+						AddHist(Tsend);
+					} else {
 						while (MxUsr > now) {
 							if (userlist[now] == UtS) {
 								try {
 									byte[] message = Encoding.UTF8.GetBytes(Tsend);
 									client[now].BeginSend(message, 0, message.Length, 0, new AsyncCallback(SendData), client[now]);
-								} 
-                                catch 
-                                {}
+								} catch {
+								}
 								break;
 
 							}
 							now++;
 						}
-                        if (now == MxUsr)
-                        {
-                            now = 0;
+						if (now == MxUsr) {
+							now = 0;
 
-                            while (MxUsr > now)
-                            {
-                                if (userlist[now] == User || userlist[now] != UtS)
-                                {
-                                    try
-                                    {
-                                        byte[] message = Encoding.UTF8.GetBytes("\nПользователь \"" + UtS + "\" не найден.");
-                                        client[now].BeginSend(message, 0, message.Length, 0, new AsyncCallback(SendData), client[now]);
-                                    }
-                                    catch { }
-                                    break;
-                                }
-                                now++;
-
-                            }
-                        }
+							if (isadmin) {
+								AddHist("\nПользователь \"" + UtS + "\" не найден.");
+							} else {
+								while (MxUsr > now) {
+									if (userlist[now] == User) {
+										try {
+											byte[] message = Encoding.UTF8.GetBytes("\nПользователь \"" + UtS + "\" не найден.");
+											client[now].BeginSend(message, 0, message.Length, 0, new AsyncCallback(SendData), client[now]);
+										} catch {
+										}
+										break;
+									}
+									now++;
+								}
+							}
+						}
+					}
 				}
 			} catch {
 				try {
@@ -433,55 +397,110 @@ namespace local_chat_v2.__
 			int nowu = 0;
 			byte[] message;
 			string usLi = "";
-			message = Encoding.UTF8.GetBytes(" ");
-			client[usrID].BeginSend(message, 0, message.Length, 0, new AsyncCallback(SendDataEnd), client[usrID]);
-			
-			while (nowu < MxUsr)
-			{
+//			message = Encoding.UTF8.GetBytes("\nВывожу список пользователей");
+//			client[usrID].BeginSend(message, 0, message.Length, 0, new AsyncCallback(SendDataEnd), client[usrID]);
+
+			usLi = adminName;
+
+			while (nowu < MxUsr) {
+
 				if (userlist[nowu] != null) {
 					usLi += "%" + userlist[nowu];
+					
 				}
 				nowu++;
 			}
 			message = Encoding.UTF8.GetBytes(usLi);
 			client[usrID].BeginSend(message, 0, message.Length, 0, new AsyncCallback(SendDataEnd), client[usrID]);
 		}
+//		 if (box.InvokeRequired)
+		//            {
+		//                Invoke(new UpdateUserList(ChangeUserList), new object[] { box, value, remove });
+		//            }
+		//            else
+		//            {
+		//                if (remove)
+		//                {
+		//                    box.Items.Remove(value);
+		//                }
+		//                else
+		//                {
+		//                    box.Items.Add(value);
+		//                }
+		//            }
+
+
 
 		void UpdateUserList()
 		{
 			if (UserListBox.InvokeRequired)
 			{
-				
+			
 				UpdUserList d = new UpdUserList(UpdateUserList);
 				this.Invoke(d, new object[] { });
 			}
 			else
 			{
 				UserListBox.Items.Clear();
-				int curusr = 0;
-				while (MxUsr > curusr)
+			int curusr = 0;
+			while (MxUsr > curusr)
+			{
+				if (userlist[curusr] != null)
 				{
-					if (userlist[curusr] != null)
-					{
-						UserListBox.Items.Add(userlist[curusr] + " : " + client[curusr].RemoteEndPoint.ToString());
-					}
-					curusr++;
+					UserListBox.Items.Add(userlist[curusr] + " : " + client[curusr].RemoteEndPoint.ToString());
 				}
+				curusr++;
+			}
 			}
 		}
 
+		
+//		void UpdateUserList()
+//		{
+//
+//			UserListBox.Items.Clear();
+//			int curusr = 0;
+//			while (MxUsr > curusr)
+//			{
+//				if (userlist[curusr] != null)
+//				{
+//					UserListBox.Items.Add(userlist[curusr] + " : " + client[curusr].RemoteEndPoint.ToString());
+//				}
+//				curusr++;
+//
+//			}
+//		}
+		
 
+//			foreach (IPAddress ip in Dns.GetHostEntry(Dns.GetHostName()).AddressList) {
+//				textBox1.Text = ip.ToString();
+//			}
+//			textBox2.Text = IPAddress.Any.ToString();
+//
+		
 
 		void MainFormFormClosing(object sender, FormClosingEventArgs e)
 		{
 			Environment.Exit(Environment.ExitCode);
 		}
-
+		void Button1Click(object sender, EventArgs e)
+		{
+			//UpdateUserList();
+			
+			
+		}
+		void Timer1Tick(object sender, EventArgs e)
+		{
+			UpdateUserList();
+		}
 		void MainFormLoad(object sender, EventArgs e)
 		{
+//			System.Windows.Forms.Timer t = new System.Windows.Forms.Timer();
+//			t.Tick += new EventHandler(Timer1Tick) ;
+//			
+//			t.Interval = 1000;
+//			t.Start();
 		}
-
- 
 
 		
 

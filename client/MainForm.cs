@@ -20,27 +20,25 @@ namespace client
 	/// <summary>
 	/// Description of MainForm.
 	/// </summary>
-	public partial class ClientForm : Form
+	public partial class MainForm : Form
 	{
 		public string adminName, servName, UserName;
-		public string IPsr = "127.0.0.1";
+		public string IPsr = "192.168.1.2";
 		
 		public int PortSr = 9050;
 		public Socket[] client;
 		public int MxUsr;
 		public string[] userlist;
 
-		public bool CONNECTED, ISCLIENT;
+		public bool CONNECTED, ISCLIENT,micON;
 		delegate void SetTextCallback(string text);
 		delegate void MovTextCallback();
-		delegate void UpdUserList();
 		public Thread receiverЫ;
-		public ClientForm()
+		public MainForm()
 		{
 			//
 			// The InitializeComponent() call is required for Windows Forms designer support.
 			//
-            
 			InitializeComponent();
 			
 			//
@@ -57,7 +55,8 @@ namespace client
 			AddHist("\nСоединение...");
 			ClToSr = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
 			IPEndPoint iep = new IPEndPoint(IPAddress.Parse(IPsr), PortSr);
-			ClToSr.BeginConnect(iep, new AsyncCallback(ConnectedToSr), ClToSr);			
+			
+			ClToSr.BeginConnect(iep, new AsyncCallback(ConnectedToSr), ClToSr);
 		}
 		public void AddHist(string text)
 		{
@@ -79,15 +78,17 @@ namespace client
 		{
 			try
 			{
+
 				ClToSr.EndConnect(iar);
 				AddHist("\nУспешно подключены к: " + ClToSr.RemoteEndPoint.ToString());
+
 				byte[] message = Encoding.UTF8.GetBytes(UserName);
 				ClToSr.BeginSend(message, 0, message.Length, 0, new AsyncCallback(SendDataSr), ClToSr);
+
 				receiverЫ = new Thread(new ThreadStart(ReceiveDataToSr));
 				receiverЫ.Name = "RforCL";
 				receiverЫ.IsBackground = true;
 				receiverЫ.Start();
-                //UpdateUserList();
 
 			}
 			catch (SocketException)
@@ -111,10 +112,9 @@ namespace client
 			Socket remote = (Socket)iar.AsyncState;
 			int sent = remote.EndSend(iar);
 		}
-		
+				
 		void ReceiveDataToSr()
 		{
-            //UpdateUserList();
 			byte[] data = new byte[1024];
 			int recv;
 			string stringData;
@@ -122,17 +122,18 @@ namespace client
 			{
 				try
 				{
-                    
 					recv = ClToSr.Receive(data);
 				}
 				catch { break; }
-                
 				stringData = Encoding.UTF8.GetString(data, 0, recv);
 				AddHist(stringData);
+				//                if (micON)
+				//                {
+				//                    aud.CurrentPosition = 0.0f;
+				//                    aud.Play();
+				//                }
 				MoveHist();
-                //UpdateUserList();
 			}
-            
 			ClToSr.Close();
 			AddHist("\nСоединение c сервером было разорвано.");
 			CONNECTED = false;
@@ -156,7 +157,10 @@ namespace client
 		}
 		void SendBut_Click(object sender, EventArgs e)
 		{
+
 			SendToSr(false);
+
+
 		}
 		void SendBoxKeyUp(object sender, KeyEventArgs e)
 		{
@@ -174,6 +178,7 @@ namespace client
 			}
 		}
 		
+		//void SendToSr(bool Ent)
 		void SendToSr(bool Ent)
 		{
 			string RedY,priv=null;
@@ -184,7 +189,6 @@ namespace client
 					RedY = ("\n" + curTimeLong + " - " + UserName + ": " + SendBox.Text.Substring(0, SendBox.Text.Length - 1));
 				else
 					RedY = ("\n" + curTimeLong + " - " + UserName + ": " + SendBox.Text);
-
 
 				byte[] message = Encoding.UTF8.GetBytes(RedY);
 
@@ -217,12 +221,8 @@ namespace client
 				ClToSr.BeginSend(message, 0, message.Length, 0, new AsyncCallback(SendDataSr), ClToSr);
 
 			}
-			else 
-			{ 
-				SendBox.Clear();
-			}
+			else { SendBox.Clear(); }
 		}
-       
 		void connectToServer_Click(object sender, EventArgs e)
 		{
 			connect con = new connect(this);
@@ -232,67 +232,69 @@ namespace client
 		void DisconnectClick(object sender, EventArgs e)
 		{
 			ClToSr.Close();
-            UpdateUserList();
 			CONNECTED = false;
-			AddHist("\nОтключены успешно");
+			AddHist("Отключены успешно");
 			
 		}
-		public void UpdateUserList()
-		{
-			if (UserListBox.InvokeRequired)
-			{
-				UpdUserList d = new UpdUserList(UpdateUserList);
-				this.Invoke(d, new object[] { });
-			}
-			else
-			{
-				UserListBox.Items.Clear();
+        void UpdateUserList()
+        {
 
-				string USERS;
-				try
-				{
-					byte[] data = new byte[1024];
-					int recv = 0;
-					byte[] message = Encoding.UTF8.GetBytes("*get_all_users_tocl*");
-					ClToSr.BeginSend(message, 0, message.Length, 0, new AsyncCallback(SendDataSr), ClToSr);
-					recv = ClToSr.Receive(data);
-					USERS = Encoding.UTF8.GetString(data, 0, recv);
-					string[] users = USERS.Split('%');
-					int mxvl = users.Length+1, nowl = 1;
-					while (mxvl > nowl)
-					{
-						if (users[nowl] == UserName)
-						{
-							users[nowl] = "[ " + users[nowl] + " ]";
-						}
-						UserListBox.Items.Add(users[nowl]);
-						nowl++;
-					}
-				}
-				catch { }
-			}
-		}
+            UserListBox.Items.Clear();
+
+                string USERS = "";
+                try
+                {
+
+                    byte[] data = new byte[1024];
+                    int recv = 0;
+                    byte[] message = Encoding.UTF8.GetBytes("*get_all_users_tocl*");
+                    ClToSr.BeginSend(message, 0, message.Length, 0, new AsyncCallback(SendDataSr), ClToSr);
+
+                    recv = ClToSr.Receive(data);
+
+                    USERS = Encoding.UTF8.GetString(data, 0, recv);
+
+                    string[] users = USERS.Split('%');
+
+                    int mxvl = users.Length, nowl = 0;
+                    while (mxvl > nowl)
+                    {
+                        if (users[nowl] == UserName)
+                        {
+                            users[nowl] = "[ " + users[nowl] + " ]";
+                        }
+                        UserListBox.Items.Add(users[nowl]);
+                        nowl++;
+                    }
+
+                }
+                catch { }
+            
+        }
 		private void MainForm_FormClosing(object sender, FormClosingEventArgs e)
 		{
 			Environment.Exit(Environment.ExitCode);
 		}
 		void MainFormLoad(object sender, EventArgs e)
 		{
-            System.Windows.Forms.Timer t = new System.Windows.Forms.Timer();
-            t.Tick += new EventHandler(timer1_Tick);
-            t.Interval = 1500;
-            t.Start();
-        }
-
+//						System.Windows.Forms.Timer t = new System.Windows.Forms.Timer();
+//            t.Tick += new EventHandler(Timer1Tick) ;
+//            
+//			t.Interval = 1000;
+//			t.Start();
+//			
+		}
+		void Timer1Tick(object sender, EventArgs e)
+		{
+			//UpdateUserList();
+			
+		}
 		void Button1Click(object sender, EventArgs e)
 		{
 			UpdateUserList();
 		}
 
-        private void timer1_Tick(object sender, EventArgs e)
-        {
-            UpdateUserList();
-        }
 
+		
 	}
 }

@@ -11,21 +11,26 @@ using System.Windows.Forms;
 
 namespace local_chat_v2.__
 {
-	/// <summary>
-	/// Class with program entry point.
-	/// </summary>
-	internal sealed class Program
-	{
-		/// <summary>
-		/// Program entry point.
-		/// </summary>
-		[STAThread]
-		private static void Main(string[] args)
-		{
-			Application.EnableVisualStyles();
-			Application.SetCompatibleTextRenderingDefault(false);
-			Application.Run(new ServerForm());
-		}
-		
-	}
+    /// <summary>
+    /// Class with program entry point.
+    /// </summary>
+    internal sealed class Program
+    {
+        //client.ClientForm cf;
+        /// <summary>
+        /// Program entry point.
+        /// </summary>
+        [STAThread]
+        private static void Main(string[] args)
+        {
+            
+            Application.EnableVisualStyles();
+            Application.SetCompatibleTextRenderingDefault(false);
+            //client.ClientForm a = new client.ClientForm();
+          //  Application.Run(new ServerForm(a));
+            Application.Run(new ServerForm());
+
+
+        }
+    }
 }

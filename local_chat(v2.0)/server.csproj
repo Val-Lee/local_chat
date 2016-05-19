@@ -74,5 +74,11 @@
       <DependentUpon>ServerForm.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\client\client.csproj">
+      <Project>{8ce8b153-a15e-47a0-8b74-35c8896ae34e}</Project>
+      <Name>client</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

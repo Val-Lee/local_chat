@@ -19,9 +19,7 @@ H:\local_chat(v2.0)\client\obj\Debug\client.pdb
 F:\local_chat(v2.0)\client\bin\Debug\client.exe.config
 F:\local_chat(v2.0)\client\bin\Debug\client.exe
 F:\local_chat(v2.0)\client\bin\Debug\client.pdb
-F:\local_chat(v2.0)\client\obj\Debug\client.csprojResolveAssemblyReference.cache
 F:\local_chat(v2.0)\client\obj\Debug\client.connect.resources
-F:\local_chat(v2.0)\client\obj\Debug\client.MainForm.resources
 F:\local_chat(v2.0)\client\obj\Debug\client.NewIP.resources
 F:\local_chat(v2.0)\client\obj\Debug\client.csproj.GenerateResource.Cache
 F:\local_chat(v2.0)\client\obj\Debug\client.exe
@@ -37,3 +35,4 @@ D:\study(v2)\2kurs2sem\kursa4\local_chat(v2.0)\client\obj\Debug\client.csproj.Ge
 D:\study(v2)\2kurs2sem\kursa4\local_chat(v2.0)\client\obj\Debug\client.exe
 D:\study(v2)\2kurs2sem\kursa4\local_chat(v2.0)\client\obj\Debug\client.pdb
 D:\study(v2)\2kurs2sem\kursa4\local_chat(v2.0)\client\obj\Debug\client.ClientForm.resources
+F:\local_chat(v2.0)\client\obj\Debug\client.ClientForm.resources
