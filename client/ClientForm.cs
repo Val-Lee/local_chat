@@ -42,13 +42,20 @@ namespace client
         public Socket ClToSr;
         public void ConnectToServ()
         {
-            ISCLIENT = true;
-            CONNECTED = true;
-            StatusCHange();
-            AddHist("\nСоединение...");
-            ClToSr = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
-            IPEndPoint iep = new IPEndPoint(IPAddress.Parse(IPsr), PortSr);
-            ClToSr.BeginConnect(iep, new AsyncCallback(ConnectedToSr), ClToSr);
+            try
+            {
+                ISCLIENT = true;
+                CONNECTED = true;
+                StatusCHange();
+                AddHist("\nСоединение...");
+                ClToSr = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
+                IPEndPoint iep = new IPEndPoint(IPAddress.Parse(IPsr), PortSr);
+                ClToSr.BeginConnect(iep, new AsyncCallback(ConnectedToSr), ClToSr);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Ошибка!");
+            }
         }
         public void AddHist(string text)
         {
