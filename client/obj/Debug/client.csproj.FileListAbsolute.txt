@@ -55,3 +55,12 @@ D:\Val-Lee\2kurs\4 sem\kursa4\local_chat\client\obj\Debug\client.NewIP.resources
 D:\Val-Lee\2kurs\4 sem\kursa4\local_chat\client\obj\Debug\client.csproj.GenerateResource.Cache
 D:\Val-Lee\2kurs\4 sem\kursa4\local_chat\client\obj\Debug\client.exe
 D:\Val-Lee\2kurs\4 sem\kursa4\local_chat\client\obj\Debug\client.pdb
+D:\Val-Lee\2kurs\kursa4\local_chat\client\bin\Debug\client.exe.config
+D:\Val-Lee\2kurs\kursa4\local_chat\client\bin\Debug\client.exe
+D:\Val-Lee\2kurs\kursa4\local_chat\client\bin\Debug\client.pdb
+D:\Val-Lee\2kurs\kursa4\local_chat\client\obj\Debug\client.connect.resources
+D:\Val-Lee\2kurs\kursa4\local_chat\client\obj\Debug\client.ClientForm.resources
+D:\Val-Lee\2kurs\kursa4\local_chat\client\obj\Debug\client.NewIP.resources
+D:\Val-Lee\2kurs\kursa4\local_chat\client\obj\Debug\client.csproj.GenerateResource.Cache
+D:\Val-Lee\2kurs\kursa4\local_chat\client\obj\Debug\client.exe
+D:\Val-Lee\2kurs\kursa4\local_chat\client\obj\Debug\client.pdb

@@ -1,12 +1,4 @@
-﻿/*
- * Создано в SharpDevelop.
- * Пользователь: Света
- * Дата: 21.04.2016
- * Время: 12:11
- * 
- * Для изменения этого шаблона используйте меню "Инструменты | Параметры | Кодирование | Стандартные заголовки".
- */
-using System;
+﻿using System;
 using System.Windows.Forms;
 using System.Collections.Generic;
 using System.Drawing;
@@ -37,11 +29,10 @@ namespace local_chat_v2.__
         delegate void SetTextCallback(string text);
         delegate void MovTextCallback();
         delegate void UpdUserList();
-        SqlConnection con = new SqlConnection(@"Data Source=(LocalDB)\v11.0;AttachDbFilename=D:\Val-Lee\2kurs\4 sem\kursa4\local_chat\local_chat(v2.0)\LocalDB_local_chat.mdf;Integrated Security=True");
+        SqlConnection con = new SqlConnection(@"Data Source=(LocalDB)\v11.0;AttachDbFilename=D:\Val-Lee\2kurs\kursa4\local_chat\local_chat(v2.0)\LocalDB_local_chat.mdf;Integrated Security=True");
         SqlCommand cmd = new  SqlCommand();
-        SqlDataReader dr;//Data Source=(LocalDB)\v11.0;AttachDbFilename="D:\Val-Lee\2kurs\4 sem\kursa4\local_chat\local_chat(v2.0)\LocalDB_local_chat.mdf";Integrated Security=True
-        //public client.ClientForm qw;
-        //public ServerForm(client.ClientForm cf)
+        SqlDataReader dr;
+
         public ServerForm()
         {
             //
@@ -49,7 +40,6 @@ namespace local_chat_v2.__
             //
 
             InitializeComponent();
-            // qw = cf;
             StatusCHange();
 
             //
@@ -63,9 +53,9 @@ namespace local_chat_v2.__
 
             try
             {
-                MxUsr = 15;
-                client = new Socket[15];
-                userlist = new string[15];
+                MxUsr = 50;
+                client = new Socket[50];
+                userlist = new string[50];
                 MakeServerStart();
                 AddHist("\n" + "Сервер запущен.");
             }
@@ -144,8 +134,6 @@ namespace local_chat_v2.__
             newsock.Bind(iep);
             newsock.Listen(5);
             newsock.BeginAccept(new AsyncCallback(AcceptConn), newsock);
-            //	UpdateUserList();
-
         }
 
 
@@ -155,13 +143,11 @@ namespace local_chat_v2.__
             {
                 hostServer.Enabled = false;
                 stopServer.Enabled = true;
-
             }
             else
             {
                 stopServer.Enabled = false;
                 hostServer.Enabled = true;
-
             }
         }
 
@@ -234,13 +220,11 @@ namespace local_chat_v2.__
 
                     AddHist("\nПодключён: " + client[NumCl].RemoteEndPoint.ToString() + " : " + userlist[NumCl]);
                     SendToAll("\nПодключён: " + userlist[NumCl], NumCl);
-
                     Thread receiver = new Thread(ReceiveData);
                     receiver.IsBackground = true;
                     receiver.Start(NumCl);
                     MakeServerStart();
                     UpdateUserList();
-                    //qw.UpdateUserList();
                 }
             }
             else
@@ -249,12 +233,10 @@ namespace local_chat_v2.__
             }
         }
 
-
         public void AddHist(string text)
         {
             if (this.HistoryBox.InvokeRequired)
             {
-
                 SetTextCallback d = new SetTextCallback(AddHist);
                 this.Invoke(d, new object[] { text });
             }
@@ -269,7 +251,6 @@ namespace local_chat_v2.__
         {
             if (this.HistoryBox.InvokeRequired)
             {
-
                 MovTextCallback d = new MovTextCallback(MoveHist);
                 this.Invoke(d, new object[] { });
             }
@@ -298,8 +279,6 @@ namespace local_chat_v2.__
             int recv = 0;
             string stringData = "", stData = "", userNM = userlist[Clnm];
             string timemsg = "", textmsg = "", sendallmsg = "all";
-
-
             while (true)
             {
                 try
@@ -331,8 +310,6 @@ namespace local_chat_v2.__
                     else
                     {
                         string ttt = Encoding.UTF8.GetString(data, 0, recv);
-                        //if (ttt.Substring((userlist[Clnm].Length + 3)).Length >= 4)
-                        //{
                         if (ttt.Contains("%пр%"))
                         {
                             stData = Encoding.UTF8.GetString(data, 0, recv);
@@ -341,9 +318,6 @@ namespace local_chat_v2.__
                         }
                         else
                         {
-                            
-                            
-                          //  timemsg = ttt.Substring(0, 8);
                             timemsg = ttt.Substring(0).Split('-')[0];
                             textmsg = ttt.Substring(userlist[Clnm].Length+timemsg.Length+4);
                             try
@@ -367,21 +341,12 @@ namespace local_chat_v2.__
                             stringData = Encoding.UTF8.GetString(data, 0, recv);
                             sendall.Start();
                         }
-                        //}
-                        //else
-                        //{
-                        //    stringData = Encoding.UTF8.GetString(data, 0, recv);
-                        //    sendall.Start();
-                        //}
                     }
-
                 }
                 catch
                 {
-
                     AddHist("\nПользователь \"" + userNM + "\" отключился.");
                     SendToAll("\nПользователь \"" + userNM + "\" отключился.", Clnm);
-
                     break;
                 }
                 if (stringData != "*get_all_users_tocl*")
@@ -395,8 +360,7 @@ namespace local_chat_v2.__
                 client[Clnm].Close();
             }
             catch
-            {
-            }
+            {}
             client[Clnm] = null;
             userlist[Clnm] = null;
             UpdateUserList();
@@ -422,12 +386,9 @@ namespace local_chat_v2.__
 
         void PrivatMessage(string text)
 		{
-           // string timemsg = "", textmsg = "", frommsg = "", tomsg = "";
 			string[] txtC = text.Split('%');
 			int mxI = txtC.Length, now = 0;
             string curTimeLong = DateTime.Now.ToLongTimeString();
-            //frommsg = ttt.Substring(12).Split(':')[0];
-            //tomsg = ttt.Substring
             string timemsg = "";
             string textmsg = "";
 			string Tsend = "";
@@ -446,7 +407,7 @@ namespace local_chat_v2.__
 									byte[] message = Encoding.UTF8.GetBytes(Tsend);
 									client[now].BeginSend(message, 0, message.Length, 0, new AsyncCallback(SendData), client[now]);
                                     timemsg = Tsend.Substring(0,8);
-                                    textmsg = Tsend.Substring(timemsg.Length + User.Length + 14);
+                                    textmsg = Tsend.Substring(timemsg.Length + User.Length + 15);
                                     try
                                     {
                                         con.Open();
@@ -463,13 +424,11 @@ namespace local_chat_v2.__
                                     {
                                         if (con != null)
                                             con.Close();
-
                                     }
 								} 
                                 catch 
                                 {}
-								break;
-                                
+								break;                            
 							}
 							now++;
 						}
@@ -546,28 +505,17 @@ namespace local_chat_v2.__
             }
         }
 
-
-
         void MainFormFormClosing(object sender, FormClosingEventArgs e)
         {
             Environment.Exit(Environment.ExitCode);
         }
 
-        void MainFormLoad(object sender, EventArgs e)
+        private void SearchMsg_Click(object sender, EventArgs e)
         {
+            Search_msg sm = new Search_msg();
+            sm.ShowDialog();
         }
-
-        private void button1_Click(object sender, EventArgs e)
-        {
-            string curTimeLong = DateTime.Now.ToLongTimeString();
-            label1.Text = curTimeLong;
-        }
-
-
-
-
 
 
     }
-
 }

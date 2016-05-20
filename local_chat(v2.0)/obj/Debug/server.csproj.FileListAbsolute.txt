@@ -60,3 +60,16 @@ D:\Val-Lee\2kurs\4 sem\kursa4\local_chat\local_chat(v2.0)\obj\Debug\local_chat_v
 D:\Val-Lee\2kurs\4 sem\kursa4\local_chat\local_chat(v2.0)\obj\Debug\server.csproj.GenerateResource.Cache
 D:\Val-Lee\2kurs\4 sem\kursa4\local_chat\local_chat(v2.0)\obj\Debug\server.exe
 D:\Val-Lee\2kurs\4 sem\kursa4\local_chat\local_chat(v2.0)\obj\Debug\server.pdb
+D:\Val-Lee\2kurs\kursa4\local_chat\local_chat(v2.0)\bin\Debug\LocalDB_local_chat.mdf
+D:\Val-Lee\2kurs\kursa4\local_chat\local_chat(v2.0)\bin\Debug\LocalDB_local_chat_log.ldf
+D:\Val-Lee\2kurs\kursa4\local_chat\local_chat(v2.0)\bin\Debug\server.exe.config
+D:\Val-Lee\2kurs\kursa4\local_chat\local_chat(v2.0)\bin\Debug\server.exe
+D:\Val-Lee\2kurs\kursa4\local_chat\local_chat(v2.0)\bin\Debug\server.pdb
+D:\Val-Lee\2kurs\kursa4\local_chat\local_chat(v2.0)\bin\Debug\client.exe
+D:\Val-Lee\2kurs\kursa4\local_chat\local_chat(v2.0)\bin\Debug\client.pdb
+D:\Val-Lee\2kurs\kursa4\local_chat\local_chat(v2.0)\obj\Debug\server.csprojResolveAssemblyReference.cache
+D:\Val-Lee\2kurs\kursa4\local_chat\local_chat(v2.0)\obj\Debug\local_chat_v2.__.Search_msg.resources
+D:\Val-Lee\2kurs\kursa4\local_chat\local_chat(v2.0)\obj\Debug\local_chat_v2.__.ServerForm.resources
+D:\Val-Lee\2kurs\kursa4\local_chat\local_chat(v2.0)\obj\Debug\server.csproj.GenerateResource.Cache
+D:\Val-Lee\2kurs\kursa4\local_chat\local_chat(v2.0)\obj\Debug\server.exe
+D:\Val-Lee\2kurs\kursa4\local_chat\local_chat(v2.0)\obj\Debug\server.pdb

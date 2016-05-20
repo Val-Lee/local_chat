@@ -38,39 +38,52 @@ namespace client
 		/// </summary>
 		private void InitializeComponent()
 		{
-			this.ConnectBut = new System.Windows.Forms.Button();
-			this.Nickname = new System.Windows.Forms.TextBox();
-			this.SuspendLayout();
-			// 
-			// ConnectBut
-			// 
-			this.ConnectBut.Location = new System.Drawing.Point(86, 163);
-			this.ConnectBut.Name = "ConnectBut";
-			this.ConnectBut.Size = new System.Drawing.Size(75, 23);
-			this.ConnectBut.TabIndex = 0;
-			this.ConnectBut.Text = "button1";
-			this.ConnectBut.UseVisualStyleBackColor = true;
-			this.ConnectBut.Click += new System.EventHandler(this.ConnectBut_Click);
-			// 
-			// Nickname
-			// 
-			this.Nickname.Location = new System.Drawing.Point(86, 109);
-			this.Nickname.Name = "Nickname";
-			this.Nickname.Size = new System.Drawing.Size(100, 20);
-			this.Nickname.TabIndex = 3;
-			// 
-			// connect
-			// 
-			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
-			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-			this.ClientSize = new System.Drawing.Size(344, 310);
-			this.Controls.Add(this.Nickname);
-			this.Controls.Add(this.ConnectBut);
-			this.Name = "connect";
-			this.Text = "connect";
-			this.ResumeLayout(false);
-			this.PerformLayout();
+            this.ConnectBut = new System.Windows.Forms.Button();
+            this.Nickname = new System.Windows.Forms.TextBox();
+            this.label1 = new System.Windows.Forms.Label();
+            this.SuspendLayout();
+            // 
+            // ConnectBut
+            // 
+            this.ConnectBut.Location = new System.Drawing.Point(24, 72);
+            this.ConnectBut.Name = "ConnectBut";
+            this.ConnectBut.Size = new System.Drawing.Size(173, 23);
+            this.ConnectBut.TabIndex = 0;
+            this.ConnectBut.Text = "Подключиться!";
+            this.ConnectBut.UseVisualStyleBackColor = true;
+            this.ConnectBut.Click += new System.EventHandler(this.ConnectBut_Click);
+            // 
+            // Nickname
+            // 
+            this.Nickname.Location = new System.Drawing.Point(24, 37);
+            this.Nickname.Name = "Nickname";
+            this.Nickname.Size = new System.Drawing.Size(173, 20);
+            this.Nickname.TabIndex = 3;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(68, 9);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(78, 13);
+            this.label1.TabIndex = 4;
+            this.label1.Text = "Выберите ник";
+            // 
+            // connect
+            // 
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.ClientSize = new System.Drawing.Size(224, 120);
+            this.Controls.Add(this.label1);
+            this.Controls.Add(this.Nickname);
+            this.Controls.Add(this.ConnectBut);
+            this.Name = "connect";
+            this.Text = "Подключение";
+            this.ResumeLayout(false);
+            this.PerformLayout();
 
 		}
+
+        private System.Windows.Forms.Label label1;
 	}
 }

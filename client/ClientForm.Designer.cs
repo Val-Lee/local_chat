@@ -22,8 +22,7 @@ namespace client
 		private System.Windows.Forms.RichTextBox SendBox;
 		private System.Windows.Forms.ToolStripMenuItem connectToServer;
 		private System.Windows.Forms.ToolStripMenuItem disconnect;
-		private System.Windows.Forms.ListBox UserListBox;
-		private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.ListBox UserListBox;
 		
 		/// <summary>
 		/// Disposes resources used by the form.
@@ -55,8 +54,8 @@ namespace client
             this.SendBut = new System.Windows.Forms.Button();
             this.SendBox = new System.Windows.Forms.RichTextBox();
             this.UserListBox = new System.Windows.Forms.ListBox();
-            this.button1 = new System.Windows.Forms.Button();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
+            this.выходToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -84,22 +83,23 @@ namespace client
             // 
             this.menuToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.connectToServer,
-            this.disconnect});
+            this.disconnect,
+            this.выходToolStripMenuItem});
             this.menuToolStripMenuItem.Name = "menuToolStripMenuItem";
-            this.menuToolStripMenuItem.Size = new System.Drawing.Size(45, 20);
-            this.menuToolStripMenuItem.Text = "Menu";
+            this.menuToolStripMenuItem.Size = new System.Drawing.Size(53, 20);
+            this.menuToolStripMenuItem.Text = "Меню";
             // 
             // connectToServer
             // 
             this.connectToServer.Name = "connectToServer";
-            this.connectToServer.Size = new System.Drawing.Size(161, 22);
-            this.connectToServer.Text = "Connect to server";
+            this.connectToServer.Size = new System.Drawing.Size(156, 22);
+            this.connectToServer.Text = "Подключиться";
             this.connectToServer.Click += new System.EventHandler(this.connectToServer_Click);
             // 
             // disconnect
             // 
             this.disconnect.Name = "disconnect";
-            this.disconnect.Size = new System.Drawing.Size(161, 22);
+            this.disconnect.Size = new System.Drawing.Size(167, 22);
             this.disconnect.Text = "Отключиться";
             this.disconnect.Click += new System.EventHandler(this.DisconnectClick);
             // 
@@ -109,7 +109,7 @@ namespace client
             this.SendBut.Name = "SendBut";
             this.SendBut.Size = new System.Drawing.Size(75, 42);
             this.SendBut.TabIndex = 5;
-            this.SendBut.Text = "button1";
+            this.SendBut.Text = "Отправить";
             this.SendBut.UseVisualStyleBackColor = true;
             this.SendBut.Click += new System.EventHandler(this.SendBut_Click);
             // 
@@ -125,39 +125,35 @@ namespace client
             // UserListBox
             // 
             this.UserListBox.FormattingEnabled = true;
-            this.UserListBox.Location = new System.Drawing.Point(336, 40);
+            this.UserListBox.Location = new System.Drawing.Point(336, 38);
             this.UserListBox.Name = "UserListBox";
             this.UserListBox.Size = new System.Drawing.Size(166, 251);
             this.UserListBox.TabIndex = 6;
             this.UserListBox.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.UserListBox_MouseDoubleClick);
             // 
-            // button1
-            // 
-            this.button1.Location = new System.Drawing.Point(439, 307);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(75, 23);
-            this.button1.TabIndex = 7;
-            this.button1.Text = "button1";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.Button1Click);
-            // 
             // timer1
             // 
             this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
+            // 
+            // выходToolStripMenuItem
+            // 
+            this.выходToolStripMenuItem.Name = "выходToolStripMenuItem";
+            this.выходToolStripMenuItem.Size = new System.Drawing.Size(156, 22);
+            this.выходToolStripMenuItem.Text = "Выход";
+            this.выходToolStripMenuItem.Click += new System.EventHandler(this.выходToolStripMenuItem_Click);
             // 
             // ClientForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(514, 351);
-            this.Controls.Add(this.button1);
+            this.ClientSize = new System.Drawing.Size(514, 344);
             this.Controls.Add(this.UserListBox);
             this.Controls.Add(this.SendBut);
             this.Controls.Add(this.SendBox);
             this.Controls.Add(this.HistoryBox);
             this.Controls.Add(this.menuStrip1);
             this.Name = "ClientForm";
-            this.Text = "client";
+            this.Text = "Local Chat";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.MainForm_FormClosing);
             this.Load += new System.EventHandler(this.MainFormLoad);
             this.menuStrip1.ResumeLayout(false);
@@ -168,5 +164,6 @@ namespace client
 		}
 
         private System.Windows.Forms.Timer timer1;
+        private System.Windows.Forms.ToolStripMenuItem выходToolStripMenuItem;
 	}
 }

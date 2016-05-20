@@ -1,12 +1,4 @@
-﻿/*
- * Создано в SharpDevelop.
- * Пользователь: Света
- * Дата: 25.04.2016
- * Время: 11:58
- * 
- * Для изменения этого шаблона используйте меню "Инструменты | Параметры | Кодирование | Стандартные заголовки".
- */
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Windows.Forms;
@@ -24,12 +16,10 @@ namespace client
     {
         public string adminName, servName, UserName;
         public string IPsr = "127.0.0.1";
-
         public int PortSr = 9050;
         public Socket[] client;
         public int MxUsr;
         public string[] userlist;
-
         public bool CONNECTED, ISCLIENT;
         delegate void SetTextCallback(string text);
         delegate void MovTextCallback();
@@ -40,8 +30,9 @@ namespace client
             //
             // The InitializeComponent() call is required for Windows Forms designer support.
             //
-
+            CONNECTED = false;
             InitializeComponent();
+            StatusCHange();
 
             //
             // TODO: Add constructor code after the InitializeComponent() call.
@@ -53,7 +44,7 @@ namespace client
         {
             ISCLIENT = true;
             CONNECTED = true;
-            // StatusCHange();
+            StatusCHange();
             AddHist("\nСоединение...");
             ClToSr = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
             IPEndPoint iep = new IPEndPoint(IPAddress.Parse(IPsr), PortSr);
@@ -87,7 +78,6 @@ namespace client
                 receiverЫ.Name = "RforCL";
                 receiverЫ.IsBackground = true;
                 receiverЫ.Start();
-                //UpdateUserList();
 
             }
             catch (SocketException)
@@ -95,8 +85,7 @@ namespace client
                 CONNECTED = false;
                 AddHist("\nОшибка соединения! Возможно сервер переполнен либо нет связи.");
                 NewIPYo();
-
-                // StatusCHange();
+                StatusCHange();
             }
 
         }
@@ -106,6 +95,24 @@ namespace client
             NewIP a = new NewIP(this);
             a.ShowDialog();
         }
+        void StatusCHange()
+        {
+            if (CONNECTED)
+            {
+                connectToServer.Enabled = false;
+                disconnect.Enabled = true;
+                SendBox.Enabled = true;
+                SendBut.Enabled = true;
+            }
+            else
+            {
+                disconnect.Enabled = false;
+                connectToServer.Enabled = true;
+                SendBox.Enabled = false;
+                SendBut.Enabled = false;
+
+            }
+        }
         void SendDataSr(IAsyncResult iar)
         {
             Socket remote = (Socket)iar.AsyncState;
@@ -114,7 +121,6 @@ namespace client
 
         void ReceiveDataToSr()
         {
-            //UpdateUserList();
             byte[] data = new byte[1024];
             int recv;
             string stringData;
@@ -130,13 +136,12 @@ namespace client
                 stringData = Encoding.UTF8.GetString(data, 0, recv);
                 AddHist(stringData);
                 MoveHist();
-                //UpdateUserList();
             }
 
             ClToSr.Close();
             AddHist("\nСоединение c сервером было разорвано.");
             CONNECTED = false;
-            //StatusCHange();
+            StatusCHange();
             return;
         }
 
@@ -234,8 +239,8 @@ namespace client
             ClToSr.Close();
             UpdateUserList();
             CONNECTED = false;
+            StatusCHange();
             AddHist("\nОтключены успешно");
-
         }
         public void UpdateUserList()
         {
@@ -284,10 +289,6 @@ namespace client
             t.Start();
         }
 
-        void Button1Click(object sender, EventArgs e)
-        {
-            UpdateUserList();
-        }
 
         private void timer1_Tick(object sender, EventArgs e)
         {
@@ -306,6 +307,11 @@ namespace client
 
             }
 
+        }
+
+        private void выходToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            this.Close();
         }
     }
 }

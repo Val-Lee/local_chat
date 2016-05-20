@@ -38,39 +38,52 @@ namespace client
 		/// </summary>
 		private void InitializeComponent()
 		{
-			this.Connect = new System.Windows.Forms.Button();
-			this.NewIPBox = new System.Windows.Forms.TextBox();
-			this.SuspendLayout();
-			// 
-			// Connect
-			// 
-			this.Connect.Location = new System.Drawing.Point(85, 154);
-			this.Connect.Name = "Connect";
-			this.Connect.Size = new System.Drawing.Size(75, 23);
-			this.Connect.TabIndex = 0;
-			this.Connect.Text = "button1";
-			this.Connect.UseVisualStyleBackColor = true;
-			this.Connect.Click += new System.EventHandler(this.Connect_Click);
-			// 
-			// NewIPBox
-			// 
-			this.NewIPBox.Location = new System.Drawing.Point(85, 65);
-			this.NewIPBox.Name = "NewIPBox";
-			this.NewIPBox.Size = new System.Drawing.Size(100, 20);
-			this.NewIPBox.TabIndex = 1;
-			// 
-			// NewIP
-			// 
-			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
-			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-			this.ClientSize = new System.Drawing.Size(284, 262);
-			this.Controls.Add(this.NewIPBox);
-			this.Controls.Add(this.Connect);
-			this.Name = "NewIP";
-			this.Text = "NewIP";
-			this.ResumeLayout(false);
-			this.PerformLayout();
+            this.Connect = new System.Windows.Forms.Button();
+            this.NewIPBox = new System.Windows.Forms.TextBox();
+            this.label1 = new System.Windows.Forms.Label();
+            this.SuspendLayout();
+            // 
+            // Connect
+            // 
+            this.Connect.Location = new System.Drawing.Point(26, 99);
+            this.Connect.Name = "Connect";
+            this.Connect.Size = new System.Drawing.Size(200, 23);
+            this.Connect.TabIndex = 0;
+            this.Connect.Text = "Подключится!";
+            this.Connect.UseVisualStyleBackColor = true;
+            this.Connect.Click += new System.EventHandler(this.Connect_Click);
+            // 
+            // NewIPBox
+            // 
+            this.NewIPBox.Location = new System.Drawing.Point(26, 63);
+            this.NewIPBox.Name = "NewIPBox";
+            this.NewIPBox.Size = new System.Drawing.Size(200, 20);
+            this.NewIPBox.TabIndex = 1;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(23, 19);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(203, 26);
+            this.label1.TabIndex = 2;
+            this.label1.Text = "Мы не можем подключится к серверу!\r\nПожалуйста, укажите новый IP адрес!";
+            // 
+            // NewIP
+            // 
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.ClientSize = new System.Drawing.Size(248, 150);
+            this.Controls.Add(this.label1);
+            this.Controls.Add(this.NewIPBox);
+            this.Controls.Add(this.Connect);
+            this.Name = "NewIP";
+            this.Text = "Подключение";
+            this.ResumeLayout(false);
+            this.PerformLayout();
 
 		}
+
+        private System.Windows.Forms.Label label1;
 	}
 }

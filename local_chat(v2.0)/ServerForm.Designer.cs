@@ -48,17 +48,17 @@ namespace local_chat_v2.__
             this.hostServer = new System.Windows.Forms.ToolStripMenuItem();
             this.stopServer = new System.Windows.Forms.ToolStripMenuItem();
             this.exit = new System.Windows.Forms.ToolStripMenuItem();
+            this.SearchMsg = new System.Windows.Forms.ToolStripMenuItem();
             this.HistoryBox = new System.Windows.Forms.RichTextBox();
             this.UserListBox = new System.Windows.Forms.ListBox();
-            this.button1 = new System.Windows.Forms.Button();
-            this.label1 = new System.Windows.Forms.Label();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
             // menuStrip1
             // 
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.menuToolStripMenuItem});
+            this.menuToolStripMenuItem,
+            this.SearchMsg});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Size = new System.Drawing.Size(483, 24);
@@ -72,29 +72,36 @@ namespace local_chat_v2.__
             this.stopServer,
             this.exit});
             this.menuToolStripMenuItem.Name = "menuToolStripMenuItem";
-            this.menuToolStripMenuItem.Size = new System.Drawing.Size(50, 20);
-            this.menuToolStripMenuItem.Text = "Menu";
+            this.menuToolStripMenuItem.Size = new System.Drawing.Size(53, 20);
+            this.menuToolStripMenuItem.Text = "Меню";
             // 
             // hostServer
             // 
             this.hostServer.Name = "hostServer";
-            this.hostServer.Size = new System.Drawing.Size(133, 22);
-            this.hostServer.Text = "Host server";
+            this.hostServer.Size = new System.Drawing.Size(152, 22);
+            this.hostServer.Text = "Запустить";
             this.hostServer.Click += new System.EventHandler(this.HostServerClick);
             // 
             // stopServer
             // 
             this.stopServer.Name = "stopServer";
-            this.stopServer.Size = new System.Drawing.Size(133, 22);
-            this.stopServer.Text = "Stop server";
+            this.stopServer.Size = new System.Drawing.Size(152, 22);
+            this.stopServer.Text = "Остановить";
             this.stopServer.Click += new System.EventHandler(this.StopServerClick);
             // 
             // exit
             // 
             this.exit.Name = "exit";
-            this.exit.Size = new System.Drawing.Size(133, 22);
-            this.exit.Text = "Exit";
+            this.exit.Size = new System.Drawing.Size(152, 22);
+            this.exit.Text = "Выход";
             this.exit.Click += new System.EventHandler(this.ExitClick);
+            // 
+            // SearchMsg
+            // 
+            this.SearchMsg.Name = "SearchMsg";
+            this.SearchMsg.Size = new System.Drawing.Size(122, 20);
+            this.SearchMsg.Text = "Поиск сообщений";
+            this.SearchMsg.Click += new System.EventHandler(this.SearchMsg_Click);
             // 
             // HistoryBox
             // 
@@ -109,54 +116,31 @@ namespace local_chat_v2.__
             // UserListBox
             // 
             this.UserListBox.FormattingEnabled = true;
-            this.UserListBox.Location = new System.Drawing.Point(305, 27);
+            this.UserListBox.Location = new System.Drawing.Point(287, 27);
             this.UserListBox.Name = "UserListBox";
             this.UserListBox.Size = new System.Drawing.Size(166, 316);
             this.UserListBox.TabIndex = 2;
-            // 
-            // button1
-            // 
-            this.button1.Location = new System.Drawing.Point(234, 57);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(75, 23);
-            this.button1.TabIndex = 3;
-            this.button1.Text = "button1";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(258, 114);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(35, 13);
-            this.label1.TabIndex = 4;
-            this.label1.Text = "label1";
             // 
             // ServerForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(483, 355);
-            this.Controls.Add(this.label1);
-            this.Controls.Add(this.button1);
             this.Controls.Add(this.UserListBox);
             this.Controls.Add(this.HistoryBox);
             this.Controls.Add(this.menuStrip1);
             this.MainMenuStrip = this.menuStrip1;
             this.Name = "ServerForm";
-            this.Text = "local_chat(v2.0)";
+            this.Text = "Сервер";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.MainFormFormClosing);
-            this.Load += new System.EventHandler(this.MainFormLoad);
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
-		}
+        }
 
-        private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.ToolStripMenuItem SearchMsg;
 
 	}
 }
