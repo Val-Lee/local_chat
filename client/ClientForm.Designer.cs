@@ -86,20 +86,20 @@ namespace client
             this.connectToServer,
             this.disconnect});
             this.menuToolStripMenuItem.Name = "menuToolStripMenuItem";
-            this.menuToolStripMenuItem.Size = new System.Drawing.Size(50, 20);
+            this.menuToolStripMenuItem.Size = new System.Drawing.Size(45, 20);
             this.menuToolStripMenuItem.Text = "Menu";
             // 
             // connectToServer
             // 
             this.connectToServer.Name = "connectToServer";
-            this.connectToServer.Size = new System.Drawing.Size(167, 22);
+            this.connectToServer.Size = new System.Drawing.Size(161, 22);
             this.connectToServer.Text = "Connect to server";
             this.connectToServer.Click += new System.EventHandler(this.connectToServer_Click);
             // 
             // disconnect
             // 
             this.disconnect.Name = "disconnect";
-            this.disconnect.Size = new System.Drawing.Size(167, 22);
+            this.disconnect.Size = new System.Drawing.Size(161, 22);
             this.disconnect.Text = "Отключиться";
             this.disconnect.Click += new System.EventHandler(this.DisconnectClick);
             // 
@@ -129,6 +129,7 @@ namespace client
             this.UserListBox.Name = "UserListBox";
             this.UserListBox.Size = new System.Drawing.Size(166, 251);
             this.UserListBox.TabIndex = 6;
+            this.UserListBox.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.UserListBox_MouseDoubleClick);
             // 
             // button1
             // 
