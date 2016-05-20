@@ -37,9 +37,9 @@ namespace local_chat_v2.__
         delegate void SetTextCallback(string text);
         delegate void MovTextCallback();
         delegate void UpdUserList();
-        SqlConnection con = new SqlConnection(@"Data Source=СВЕТА-ПК\SQL;Initial Catalog=local_chat_db;Integrated Security=True");
+        SqlConnection con = new SqlConnection(@"Data Source=(LocalDB)\v11.0;AttachDbFilename=D:\Val-Lee\2kurs\4 sem\kursa4\local_chat\local_chat(v2.0)\LocalDB_local_chat.mdf;Integrated Security=True");
         SqlCommand cmd = new  SqlCommand();
-        SqlDataReader dr;
+        SqlDataReader dr;//Data Source=(LocalDB)\v11.0;AttachDbFilename="D:\Val-Lee\2kurs\4 sem\kursa4\local_chat\local_chat(v2.0)\LocalDB_local_chat.mdf";Integrated Security=True
         //public client.ClientForm qw;
         //public ServerForm(client.ClientForm cf)
         public ServerForm()
