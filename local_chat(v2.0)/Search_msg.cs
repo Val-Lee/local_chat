@@ -13,7 +13,7 @@ namespace local_chat_v2.__
 {
     public partial class Search_msg : Form
     {
-        SqlConnection con = new SqlConnection(@"Data Source=(LocalDB)\v11.0;AttachDbFilename=D:\Val-Lee\2kurs\kursa4\local_chat\local_chat(v2.0)\LocalDB_local_chat.mdf;Integrated Security=True");
+        SqlConnection con = new SqlConnection(@"Data Source=(LocalDB)\v11.0;AttachDbFilename=|DataDirectory|\LocalDB_local_chat.mdf;Integrated Security=True");
         SqlDataAdapter da;
         DataSet ds;
         DataTable dt = new DataTable();
@@ -25,7 +25,7 @@ namespace local_chat_v2.__
         private void Search_Click(object sender, EventArgs e)
         {
             string txt;
-            txt = searchText.Text + "%";          
+            txt = "%" + searchText.Text.Substring(0, searchText.Text.Length -1) + "%";          
             try
             {
                 con.Open();
@@ -44,6 +44,16 @@ namespace local_chat_v2.__
             {
                 if (con != null)
                     con.Close();
+            }
+            searchText.Clear();
+
+        }
+
+        private void searchText_KeyUp(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                Search_Click(this, EventArgs.Empty);
             }
         }
     }

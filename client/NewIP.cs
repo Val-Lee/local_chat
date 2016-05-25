@@ -35,7 +35,14 @@ namespace client
 			frm.IPsr = NewIPBox.Text;
 			frm.ConnectToServ();
 			this.Close();
-	
 		}
+
+        private void NewIPBox_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                Connect_Click(this, EventArgs.Empty);
+            }
+        }
 	}
 }

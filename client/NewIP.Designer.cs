@@ -59,6 +59,7 @@ namespace client
             this.NewIPBox.Name = "NewIPBox";
             this.NewIPBox.Size = new System.Drawing.Size(200, 20);
             this.NewIPBox.TabIndex = 1;
+            this.NewIPBox.KeyDown += new System.Windows.Forms.KeyEventHandler(this.NewIPBox_KeyDown);
             // 
             // label1
             // 

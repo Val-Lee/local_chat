@@ -36,7 +36,7 @@
             // 
             // Search
             // 
-            this.Search.Location = new System.Drawing.Point(309, 23);
+            this.Search.Location = new System.Drawing.Point(388, 23);
             this.Search.Name = "Search";
             this.Search.Size = new System.Drawing.Size(75, 37);
             this.Search.TabIndex = 0;
@@ -48,18 +48,19 @@
             // 
             this.searchText.Location = new System.Drawing.Point(21, 23);
             this.searchText.Name = "searchText";
-            this.searchText.Size = new System.Drawing.Size(244, 37);
+            this.searchText.Size = new System.Drawing.Size(338, 37);
             this.searchText.TabIndex = 1;
             this.searchText.Text = "";
+            this.searchText.KeyUp += new System.Windows.Forms.KeyEventHandler(this.searchText_KeyUp);
             // 
             // dataGridView1
             // 
             this.dataGridView1.AllowUserToDeleteRows = false;
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Location = new System.Drawing.Point(21, 88);
+            this.dataGridView1.Location = new System.Drawing.Point(21, 76);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.ReadOnly = true;
-            this.dataGridView1.Size = new System.Drawing.Size(442, 178);
+            this.dataGridView1.Size = new System.Drawing.Size(442, 197);
             this.dataGridView1.TabIndex = 3;
             // 
             // Search_msg

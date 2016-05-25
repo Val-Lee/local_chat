@@ -73,12 +73,11 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="LocalDB_local_chatDataSet.Designer.cs">
+    <Compile Include="LocalDB_local_chatDataSet1.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>LocalDB_local_chatDataSet.xsd</DependentUpon>
+      <DependentUpon>LocalDB_local_chatDataSet1.xsd</DependentUpon>
     </Compile>
-    <Compile Include="Msg_info.cs" />
     <Compile Include="Properties\Settings.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
@@ -101,16 +100,16 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
-    <None Include="LocalDB_local_chatDataSet.xsc">
-      <DependentUpon>LocalDB_local_chatDataSet.xsd</DependentUpon>
+    <None Include="LocalDB_local_chatDataSet1.xsc">
+      <DependentUpon>LocalDB_local_chatDataSet1.xsd</DependentUpon>
     </None>
-    <None Include="LocalDB_local_chatDataSet.xsd">
+    <None Include="LocalDB_local_chatDataSet1.xsd">
       <Generator>MSDataSetGenerator</Generator>
-      <LastGenOutput>LocalDB_local_chatDataSet.Designer.cs</LastGenOutput>
+      <LastGenOutput>LocalDB_local_chatDataSet1.Designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
     </None>
-    <None Include="LocalDB_local_chatDataSet.xss">
-      <DependentUpon>LocalDB_local_chatDataSet.xsd</DependentUpon>
+    <None Include="LocalDB_local_chatDataSet1.xss">
+      <DependentUpon>LocalDB_local_chatDataSet1.xsd</DependentUpon>
     </None>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>

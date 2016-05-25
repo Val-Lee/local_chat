@@ -36,29 +36,33 @@ namespace client
             {
                 if (Nickname.Text.Trim().Length == 0)
                 {
-                    MessageBox.Show("Неверные значения");
+                    MessageBox.Show("Введите ник!");
                     return;
                 }
                 string[] lof = Nickname.Text.Split('%');
                 if (lof.Length > 1)
                 {
-                    MessageBox.Show("Ник не должен содержать символы");
+                    MessageBox.Show("Ник не должен содержать символ %");
                     return;
                 }
-
                 frm.UserName = Nickname.Text;
-//                frm.IPsr = ConnectIp.Text;
-//                frm.PORTsr =Convert.ToInt32( ConnectPort.Text);
             }
             catch
             {
                 MessageBox.Show("Неверные значения");
                 return;
             }
-            frm.ISCLIENT = true;
             frm.ConnectToServ();
             this.Close();
 	
 		}
+
+        private void Nickname_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                ConnectBut_Click(this, EventArgs.Empty);
+            }
+        }
 	}
 }

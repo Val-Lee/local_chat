@@ -29,10 +29,8 @@ namespace local_chat_v2.__
         delegate void SetTextCallback(string text);
         delegate void MovTextCallback();
         delegate void UpdUserList();
-        SqlConnection con = new SqlConnection(@"Data Source=(LocalDB)\v11.0;AttachDbFilename=D:\Val-Lee\2kurs\kursa4\local_chat\local_chat(v2.0)\LocalDB_local_chat.mdf;Integrated Security=True");
+        SqlConnection con = new SqlConnection(@"Data Source=(LocalDB)\v11.0;AttachDbFilename=|DataDirectory|\LocalDB_local_chat.mdf;Integrated Security=True");
         SqlCommand cmd = new  SqlCommand();
-        SqlDataReader dr;
-
         public ServerForm()
         {
             //
@@ -397,7 +395,7 @@ namespace local_chat_v2.__
 
 			try {
 				UtS = txtC[2];
-                User = txtC[0].Substring(11).Split(':')[0];
+                User = txtC[0].Substring(12).Split(':')[0];
 				Tsend = "\n" + curTimeLong + " Приват от \"" + User + "\": " + text.Substring(txtC[0].Length + txtC[1].Length + txtC[2].Length + 3);
 				if (User != UtS) {
 					
@@ -437,7 +435,7 @@ namespace local_chat_v2.__
                             now = 0;
                             while (MxUsr > now)
                             {
-                                if (userlist[now] == User || userlist[now] != UtS)
+                                if (userlist[now] == User)
                                 {
                                     try
                                     {
@@ -513,7 +511,7 @@ namespace local_chat_v2.__
         private void SearchMsg_Click(object sender, EventArgs e)
         {
             Search_msg sm = new Search_msg();
-            sm.ShowDialog();
+            sm.Show();
         }
 
 

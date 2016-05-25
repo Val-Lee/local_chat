@@ -20,7 +20,7 @@ namespace client
         public Socket[] client;
         public int MxUsr;
         public string[] userlist;
-        public bool CONNECTED, ISCLIENT;
+        public bool CONNECTED;
         delegate void SetTextCallback(string text);
         delegate void MovTextCallback();
         delegate void UpdUserList();
@@ -43,8 +43,7 @@ namespace client
         public void ConnectToServ()
         {
             try
-            {
-                ISCLIENT = true;
+            {               
                 CONNECTED = true;
                 StatusCHange();
                 AddHist("\nСоединение...");
@@ -55,7 +54,12 @@ namespace client
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message, "Ошибка!");
+                AddHist("\nОшибка соединения!");
+                CONNECTED = false;
+                StatusCHange();
+                IPsr = "127.0.0.1";
             }
+            
         }
         public void AddHist(string text)
         {
@@ -65,8 +69,9 @@ namespace client
                 SetTextCallback d = new SetTextCallback(AddHist);
                 this.Invoke(d, new object[] { text });
             }
-            else
+            else 
             {
+
                 HistoryBox.Text += text;
                 HistoryBox.SelectionStart = HistoryBox.TextLength;
                 HistoryBox.ScrollToCaret();
@@ -85,7 +90,6 @@ namespace client
                 receiverЫ.Name = "RforCL";
                 receiverЫ.IsBackground = true;
                 receiverЫ.Start();
-
             }
             catch (SocketException)
             {
@@ -214,16 +218,16 @@ namespace client
                 {
                     AddHist(priv);
                     MoveHist();
-
                     SendBox.Clear();
+                    SendBox.Focus();
                     priv = null;
                 }
                 else
                 {
                     AddHist(RedY);
                     MoveHist();
-
                     SendBox.Clear();
+                    SendBox.Focus();
                 }
 
                 ClToSr.BeginSend(message, 0, message.Length, 0, new AsyncCallback(SendDataSr), ClToSr);
@@ -232,6 +236,7 @@ namespace client
             else
             {
                 SendBox.Clear();
+                SendBox.Focus();
             }
         }
 

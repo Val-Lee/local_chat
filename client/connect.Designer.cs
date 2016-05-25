@@ -59,6 +59,7 @@ namespace client
             this.Nickname.Name = "Nickname";
             this.Nickname.Size = new System.Drawing.Size(173, 20);
             this.Nickname.TabIndex = 3;
+            this.Nickname.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Nickname_KeyDown);
             // 
             // label1
             // 
