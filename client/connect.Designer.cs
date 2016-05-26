@@ -80,6 +80,7 @@ namespace client
             this.Controls.Add(this.ConnectBut);
             this.Name = "connect";
             this.Text = "Подключение";
+            this.Load += new System.EventHandler(this.connect_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 

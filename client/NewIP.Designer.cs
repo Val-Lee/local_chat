@@ -80,6 +80,7 @@ namespace client
             this.Controls.Add(this.Connect);
             this.Name = "NewIP";
             this.Text = "Подключение";
+            this.Load += new System.EventHandler(this.NewIP_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 

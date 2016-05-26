@@ -64,5 +64,10 @@ namespace client
                 ConnectBut_Click(this, EventArgs.Empty);
             }
         }
+
+        private void connect_Load(object sender, EventArgs e)
+        {
+            Nickname.Focus();
+        }
 	}
 }

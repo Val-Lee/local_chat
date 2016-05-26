@@ -13,7 +13,7 @@ namespace local_chat_v2.__
 {
     public partial class Search_msg : Form
     {
-        SqlConnection con = new SqlConnection(@"Data Source=(LocalDB)\v11.0;AttachDbFilename=|DataDirectory|\LocalDB_local_chat.mdf;Integrated Security=True");
+        SqlConnection con = new SqlConnection(@"Data Source=(LocalDB)\v11.0;AttachDbFilename=|DataDirectory|\LocalbbDB_local_chat.mdf;Integrated Security=True");
         SqlDataAdapter da;
         DataSet ds;
         DataTable dt = new DataTable();
@@ -37,7 +37,7 @@ namespace local_chat_v2.__
             }
             catch (Exception q)
             {
-                MessageBox.Show(q.Message);
+                MessageBox.Show(q.Message, "Ошибка!", MessageBoxButtons.OK, MessageBoxIcon.Error);
 
             }
             finally

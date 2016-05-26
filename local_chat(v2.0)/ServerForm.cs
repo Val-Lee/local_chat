@@ -29,20 +29,12 @@ namespace local_chat_v2.__
         delegate void SetTextCallback(string text);
         delegate void MovTextCallback();
         delegate void UpdUserList();
-        SqlConnection con = new SqlConnection(@"Data Source=(LocalDB)\v11.0;AttachDbFilename=|DataDirectory|\LocalDB_local_chat.mdf;Integrated Security=True");
+        SqlConnection con = new SqlConnection(@"Data Source=(LocalDB)\v11.0;AttachDbFilename=|DataDirectory|\LocalDB_locsal_chat.mdf;Integrated Security=True");
         SqlCommand cmd = new  SqlCommand();
         public ServerForm()
         {
-            //
-            // The InitializeComponent() call is required for Windows Forms designer support.
-            //
-
             InitializeComponent();
             StatusCHange();
-
-            //
-            // TODO: Add constructor code after the InitializeComponent() call.
-            //
         }
 
 
@@ -59,29 +51,13 @@ namespace local_chat_v2.__
             }
             catch (Exception x)
             {
-                MessageBox.Show(x.Message);
+                CONNECTED = false;
+                StatusCHange();
+                MessageBox.Show(x.Message, "Ошибка!", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
         void StopServerClick(object sender, EventArgs e)
         {
-
-            CONNECTED = false;
-            if (ISCLIENT)
-            {
-                try
-                {
-                    ClToSr.Close();
-                }
-                catch { }
-                try
-                {
-                    ClToSr = null;
-                }
-                catch { }
-                AddHist("\nОтключены успешно");
-            }
-            else
-            {
                 int nwU = 0;
                 while (MxUsr > nwU)
                 {
@@ -114,7 +90,6 @@ namespace local_chat_v2.__
                 }
                 catch
                 {}
-            }
             CONNECTED = false;
             StatusCHange();
         }
@@ -327,7 +302,7 @@ namespace local_chat_v2.__
                             }
                             catch (Exception e)
                             {
-                                MessageBox.Show(e.Message);
+                                MessageBox.Show(e.Message, "Ошибка!", MessageBoxButtons.OK, MessageBoxIcon.Error);
                                 break;
                             }
                             finally
@@ -415,7 +390,7 @@ namespace local_chat_v2.__
                                     }
                                     catch (Exception e)
                                     {
-                                        MessageBox.Show(e.Message);
+                                        MessageBox.Show(e.Message, "Ошибка!", MessageBoxButtons.OK, MessageBoxIcon.Error);
                                         break;
                                     }
                                     finally

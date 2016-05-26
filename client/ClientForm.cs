@@ -53,7 +53,7 @@ namespace client
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message, "Ошибка!");
+                MessageBox.Show(ex.Message, "Ошибка!", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 AddHist("\nОшибка соединения!");
                 CONNECTED = false;
                 StatusCHange();
@@ -311,12 +311,10 @@ namespace client
         {
             if (UserListBox.SelectedItem != null)
             {
-
                 SendBox.Text += "%пр%" + UserListBox.SelectedItem.ToString() + "%";
                 SendBox.Focus();
                 SendBox.SelectionStart = SendBox.Text.Length;
                 SendBox.ScrollToCaret();
-
             }
 
         }

@@ -44,5 +44,10 @@ namespace client
                 Connect_Click(this, EventArgs.Empty);
             }
         }
+
+        private void NewIP_Load(object sender, EventArgs e)
+        {
+            NewIPBox.Focus();
+        }
 	}
 }
